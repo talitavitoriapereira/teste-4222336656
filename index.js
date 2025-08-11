@@ -25,6 +25,7 @@ const db = new sqlite3.Database('./database.db', (err) => {
 db.serialize(() => {
     db.run(`
         CREATE table if not EXISTS aluno(
+        id_aluno integer primary KEY AUTOINCREMENT,
   cgm integer PRIMARY KEY  NOT null UNIQUE,
   nome varchar (400) not NULL,
   nascimento date not NULL, 
@@ -50,7 +51,7 @@ db.serialize(() => {
   email_responsavel varchar (800)
   );
     `);
-    
+
 
     console.log('Tabelas criadas com sucesso.');
 });
@@ -62,16 +63,16 @@ db.serialize(() => {
 
 // Cadastrar cliente
 app.post('/aluno', (req, res) => {
-    const {  cgm, nome, nascimento, date, cpf_aluno, rg, genero,  email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel
- } = req.body;
+    const { id_aluno, cgm, nome, nascimento, date, cpf_aluno, rg, genero, email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel
+    } = req.body;
 
     if (!nome || !cpf) {
         return res.status(400).send('Nome e CPF são obrigatórios.');
     }
 
-    const query = `INSERT INTO aluno (nome, cpf, email, telefone, endereco) VALUES (?, ?, ?, ?, ?)`;
-    db.run(query, [ cgm, nome, nascimento, date, cpf_aluno, rg, genero,  email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel
-], function (err) {
+    const query = `INSERT INTO aluno (id_aluno,cgm, nome, nascimento, date, cpf_aluno, rg, genero,  email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,? )`;
+    db.run(query, [id_aluno, cgm, nome, nascimento, date, cpf_aluno, rg, genero, email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel
+    ], function (err) {
         if (err) {
             return res.status(500).send('Erro ao cadastrar aluno.');
         }
@@ -114,13 +115,13 @@ app.get('/aluno', (req, res) => {
 // Atualizar cliente
 app.put('/aluno/cpf/:cpf', (req, res) => {
     const { cpf } = req.params;
-    const {  cgm, nome, nascimento, date, cpf_aluno, rg, genero,  email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel
+    const { cgm, nome, nascimento, date, cpf_aluno, rg, genero, email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel
 
- } = req.body;
+    } = req.body;
 
     const query = `UPDATE aluno SET nome = ?, email = ?, telefone = ?, endereco = ? WHERE cpf = ?`;
-    db.run(query, [ cgm, nome, nascimento, date, cpf_aluno, rg, genero,  email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel
-], function (err) {
+    db.run(query, [id_aluno, cgm, nome, nascimento, date, cpf_aluno, rg, genero, email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel
+    ], function (err) {
         if (err) {
             return res.status(500).send('Erro ao atualizar aluno.');
         }
