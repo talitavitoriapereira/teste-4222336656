@@ -47,9 +47,7 @@ db.serialize(() => {
   grau_parentesco varchar (40),
   cpf_responsavel varchar (11) not NULL UNIQUE,
   telefone_responsavel varchar (15),
-  email_responsavel varchar (800),
-  id_frequencia integer,
-  foreign key (id_frequencia) references frequencias (id_frequencia)
+  email_responsavel varchar (800)
   );
     `);
     
@@ -64,7 +62,7 @@ db.serialize(() => {
 
 // Cadastrar cliente
 app.post('/aluno', (req, res) => {
-    const {  cgm, nome, nascimento, date, cpf_aluno, rg, genero,  email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel, id_frequencia
+    const {  cgm, nome, nascimento, date, cpf_aluno, rg, genero,  email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel
  } = req.body;
 
     if (!nome || !cpf) {
@@ -72,7 +70,7 @@ app.post('/aluno', (req, res) => {
     }
 
     const query = `INSERT INTO aluno (nome, cpf, email, telefone, endereco) VALUES (?, ?, ?, ?, ?)`;
-    db.run(query, [ cgm, nome, nascimento, date, cpf_aluno, rg, genero,  email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel, id_frequencia
+    db.run(query, [ cgm, nome, nascimento, date, cpf_aluno, rg, genero,  email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel
 ], function (err) {
         if (err) {
             return res.status(500).send('Erro ao cadastrar aluno.');
@@ -116,11 +114,12 @@ app.get('/aluno', (req, res) => {
 // Atualizar cliente
 app.put('/aluno/cpf/:cpf', (req, res) => {
     const { cpf } = req.params;
-    const {  cgm, nome, nascimento, date, cpf_aluno, rg, genero,  email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel, id_frequencia
+    const {  cgm, nome, nascimento, date, cpf_aluno, rg, genero,  email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel
+
  } = req.body;
 
     const query = `UPDATE aluno SET nome = ?, email = ?, telefone = ?, endereco = ? WHERE cpf = ?`;
-    db.run(query, [ cgm, nome, nascimento, date, cpf_aluno, rg, genero,  email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel, id_frequencia
+    db.run(query, [ cgm, nome, nascimento, date, cpf_aluno, rg, genero,  email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel
 ], function (err) {
         if (err) {
             return res.status(500).send('Erro ao atualizar aluno.');
