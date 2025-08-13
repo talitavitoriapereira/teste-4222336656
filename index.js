@@ -25,7 +25,7 @@ const db = new sqlite3.Database('./database.db', (err) => {
 db.serialize(() => {
     db.run(`
         CREATE table if not EXISTS aluno(
-        id_aluno integer AUTOINCREMENT,
+        id_aluno, 
   cgm integer PRIMARY KEY  NOT null UNIQUE,
   nome varchar (400) not NULL,
   nascimento date not NULL, 
