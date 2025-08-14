@@ -2,28 +2,30 @@ async function cadastrarAluno(event) {
     event.preventDefault();
 
     const aluno = {
-        nome: document.getElementById("nome").value,
-        telefone: document.getElementById("telefone").value,
-        email: document.getElementById("email").value,
-        cpf: document.getElementById("cpf").value,
-        rg: document.getElementById("rg").value,
-        genero: document.getElementById("genero").value,
-        data_de_nascimento: document.getElementById("data_de_nascimento").value,
-        cep: document.getElementById("cep").value,
-        logradouro: document.getElementById("logradouro").value,
-        numero: document.getElementById("numero").value,
-        complemento: document.getElementById("complemento").value,
-        cidade: document.getElementById("cidade").value,
-        bairro: document.getElementById("bairro").value,
-        estado: document.getElementById("estado").value,
-        numero_de_matrícula: document.getElementById("numero_de_matrícula").value,
-        curso: document.getElementById("curso").value,
-        periodo: document.getElementById("periodo").value,
-        turno: document.getElementById("turno").value,
-        nome_responsavel: document.getElementById("nome_responsavel").value,
-        telefone_responsavel: document.getElementById("telefone_responsavel").value
-    };
-
+        nome: document.getElementById("aluno-nome").value,
+        telefone: document.getElementById("aluno-telefone").value,
+        email: document.getElementById("aluno-email").value,
+        cpf: document.getElementById("aluno-cpf").value,
+        rg: document.getElementById("aluno-rg").value,
+        genero: document.getElementById("aluno-genero").value,
+        data_de_nascimento: document.getElementById("aluno-data-nascimento").value,
+        cep: document.getElementById("aluno-cep").value,
+        logradouro: document.getElementById("aluno-logradouro").value,
+        numero: document.getElementById("aluno-numero").value,
+        complemento: document.getElementById("aluno-complemento").value,
+        cidade: document.getElementById("aluno-cidade").value,
+        bairro: document.getElementById("aluno-bairro").value,
+        estado: document.getElementById("aluno-estado").value,
+        numero_de_matrícula: document.getElementById("aluno-matricula").value,
+        curso: document.getElementById("aluno-curso").value,
+        periodo: document.getElementById("aluno-periodo").value,
+        turno: document.getElementById("aluno-turno").value,
+        nome_responsavel: document.getElementById("resp0-nome").value,
+        telefone_responsavel: document.getElementById("resp0-telefone").value
+        parentesco_responsavel: document.getElementById("resp0-parentesco").value,
+        cpf_responsavel: document.getElementById("resp0-cpf").value
+        email_responsavel: document.getElementById("resp0-email").value,
+       
     try {
         const response = await fetch('/aluno', {
             method: 'POST',
