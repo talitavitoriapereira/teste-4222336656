@@ -63,15 +63,18 @@ db.serialize(() => {
 
 // Cadastrar cliente
 app.post('/aluno', (req, res) => {
-    const { id_aluno, cgm, nome, nascimento, date, cpf_aluno, rg, genero, email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel
+    const {  nome,telefone, email, cpf, rg, genero, data_de_nascimento, cep, logradouro, numero, complemento, cidade, bairro, estado, numero_de_matrícul, curso, periodo, turno, nome_responsavel, telefone_responsavel, parentesco_responsavel, cpf_responsavel,   email_responsavel
+
     } = req.body;
 
     if (!nome || !cpf) {
         return res.status(400).send('Nome e CPF são obrigatórios.');
     }
 
-    const query = `INSERT INTO aluno (id_aluno,cgm, nome, nascimento, date, cpf_aluno, rg, genero,  email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,? )`;
-    db.run(query, [id_aluno, cgm, nome, nascimento, date, cpf_aluno, rg, genero, email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel
+    const query = `INSERT INTO aluno ( nome,telefone, email, cpf, rg, genero, data_de_nascimento, cep, logradouro, numero, complemento, cidade, bairro, estado, numero_de_matrícul, curso, periodo, turno, nome_responsavel, telefone_responsavel, parentesco_responsavel, cpf_responsavel,   email_responsavel (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+`;
+    db.run(query, [ nome,telefone, email, cpf, rg, genero, data_de_nascimento, cep, logradouro, numero, complemento, cidade, bairro, estado, numero_de_matrícul, curso, periodo, turno, nome_responsavel, telefone_responsavel, parentesco_responsavel, cpf_responsavel,   email_responsavel
+
     ], function (err) {
         if (err) {
             return res.status(500).send('Erro ao cadastrar aluno.');
@@ -115,12 +118,13 @@ app.get('/aluno', (req, res) => {
 // Atualizar cliente
 app.put('/aluno/cpf/:cpf', (req, res) => {
     const { cpf } = req.params;
-    const { cgm, nome, nascimento, date, cpf_aluno, rg, genero, email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel
+    const {  nome,telefone, email, rg, genero, data_de_nascimento, cep, logradouro, numero, complemento, cidade, bairro, estado, numero_de_matrícul, curso, periodo, turno, nome_responsavel, telefone_responsavel, parentesco_responsavel, cpf_responsavel,   email_responsavel
 
     } = req.body;
 
     const query = `UPDATE aluno SET nome = ?, email = ?, telefone = ?, endereco = ? WHERE cpf = ?`;
-    db.run(query, [id_aluno, cgm, nome, nascimento, date, cpf_aluno, rg, genero, email_aluno, telefone_aluno, endereço, cep, numero, complemento, bairro, cidade, estado, curso, turno, turma, responsavel, grau_parentesco, cpf_responsavel, telefone_responsavel, email_responsavel
+    db.run(query, [ nome,telefone, email, cpf, rg, genero, data_de_nascimento, cep, logradouro, numero, complemento, cidade, bairro, estado, numero_de_matrícul, curso, periodo, turno, nome_responsavel, telefone_responsavel, parentesco_responsavel, cpf_responsavel,   email_responsavel
+
     ], function (err) {
         if (err) {
             return res.status(500).send('Erro ao atualizar aluno.');
