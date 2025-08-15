@@ -17,7 +17,7 @@ async function cadastrarAluno(event) {
         cidade: document.getElementById("aluno-cidade").value,
         bairro: document.getElementById("aluno-bairro").value,
         estado: document.getElementById("aluno-estado").value,
-        numero_de_matrícula: document.getElementById("aluno-matricula").value,
+        numero_de_matricula: document.getElementById("aluno-matricula").value,
         curso: document.getElementById("aluno-curso").value,
         periodo: document.getElementById("aluno-periodo").value,
         turno: document.getElementById("aluno-turno").value,
@@ -104,7 +104,7 @@ async function atualizarAluno() {
     cidade: document.getElementById("aluno-cidade").value;
     bairro: document.getElementById("aluno-bairro").value;
     estado: document.getElementById("aluno-estado").value;
-    numero_de_matrícula: document.getElementById("aluno-matricula").value;
+    numero_de_matricula: document.getElementById("aluno-matricula").value;
     curso: document.getElementById("aluno-curso").value;
     periodo: document.getElementById("aluno-periodo").value;
     turno: document.getElementById("aluno-turno").value;
@@ -115,7 +115,7 @@ async function atualizarAluno() {
     email_responsavel: document.getElementById("resp0-email").value
 
     const alunoAtualizado = {
-        nome,telefone, email, cpf, rg, genero, data_de_nascimento, cep, logradouro, numero, complemento, cidade, bairro, estado, numero_de_matrícul, curso, periodo, turno, nome_responsavel, telefone_responsavel, parentesco_responsavel, cpf_responsavel,   email_responsavel
+        nome,telefone, email, cpf, rg, genero, data_de_nascimento, cep, logradouro, numero, complemento, cidade, bairro, estado, numero_de_matricula, curso, periodo, turno, nome_responsavel, telefone_responsavel, parentesco_responsavel, cpf_responsavel,   email_responsavel
 
     };
 
@@ -153,7 +153,6 @@ async function limpaAluno() {
     document.getElementById('aluno-numero').value = '';
     document.getElementById('aluno-complemento').value = '';
     document.getElementById('aluno-bairro').value = '';
-    
     document.getElementById('aluno-cidade').value = '';
     document.getElementById('aluno-estado').value = '';
     document.getElementById('aluno-matricula').value = '';
